@@ -1137,7 +1137,8 @@ if (typeof Slick === "undefined") {
     }
 
     function createCssRules() {
-      $style = $("<style type='text/css' rel='stylesheet' />").appendTo($("head"));
+      $style = $("<style type='text/css' rel='stylesheet' />").prependTo(container);//("head"));
+//	  stylesheet = $style;
       var rowHeight = (options.rowHeight - cellHeightDiff);
       var rules = [
         "." + uid + " .slick-header-column { left: 1000px; }",
@@ -1164,7 +1165,8 @@ if (typeof Slick === "undefined") {
     function getColumnCssRules(idx) {
       var i;
       if (!stylesheet) {
-        var sheets = document.styleSheets;
+        //var sheets = //document.styleSheets;
+		var sheets = container.get(0).getRootNode().styleSheets;
         for (i = 0; i < sheets.length; i++) {
           if ((sheets[i].ownerNode || sheets[i].owningElement) == $style[0]) {
             stylesheet = sheets[i];
